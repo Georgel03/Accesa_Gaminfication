@@ -1,20 +1,31 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button';
+import Card from './common/Card';
 export default function PlayGame() {
     const { state } = useLocation();
-    const [ questionCounter, setQuesCounter ] = useState(0)
+    const [ questionCounter, setQuesCounter ] = useState(1);
+    const [totalQuiz, setTotalQuiz] = useState(1);
+    const [questionArray, setQuesArray] = useState([])
     React.useEffect(() => {
-        const { gameData } = state;
+        const { gameData, gameCount } = state;
+        setQuesArray(gameData)
+        setTotalQuiz(gameCount)
     }, [])
 
     const prevQuestion = () => {
+        if(questionCounter > 1) {
          setQuesCounter(questionCounter - 1)
+        }
     }
 
     const nextQuestion = () => {
-        setQuesCounter(questionCounter + 1)
+        if(questionCounter < totalQuiz) {
+            setQuesCounter(questionCounter + 1)
     }
+    }
+        
+    
   return (
     <div>
        <h1>Play Game</h1>
@@ -24,6 +35,7 @@ export default function PlayGame() {
  
         onClick={prevQuestion}
         variant="contained" 
+        disabled={questionCounter === 1 ? true : false}
         style={{marginRight: 10 }}>
          Previous Question
         </Button>
@@ -32,12 +44,18 @@ export default function PlayGame() {
 
         onClick={nextQuestion}
         variant="contained" 
+        disabled={questionCounter === Number(totalQuiz) ? true : false}
         style={{marginLeft: 10 }}>
          Next Question
         </Button>
        </div> 
 
-       <h2>{questionCounter}</h2>
+       <h2>Question Number : {questionCounter}</h2>
+
+       <Card 
+       questionArray={questionArray} 
+       questionCounter={questionCounter}
+       />
     </div>
   )
 }
