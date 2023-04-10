@@ -1,10 +1,20 @@
 import './App.css';
 import Game from './components/Game';
+import PlayGame from './components/PlayGame';
+import {
+  Route,
+  Routes,
+} from "react-router-dom";
+
 function App() {
   return (
-    <div>
-      <Game />
-    </div>
+    <div className='app-main'>
+      <Routes>
+        <Route exact path="/" element={<Game />} />
+        <Route exact path='/play' elemnt={<PlayGame />} />
+        </Routes>
+       </div>
+    
   );
 }
 
