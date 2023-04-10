@@ -6,11 +6,15 @@ export default function PlayGame() {
     const { state } = useLocation();
     const [ questionCounter, setQuesCounter ] = useState(1);
     const [totalQuiz, setTotalQuiz] = useState(1);
-    const [questionArray, setQuesArray] = useState([])
+    const [questionArray, setQuesArray] = useState([]);
+    const [gameType, setGameType] = useState('');
+    const [gameDifficulty, setGameDifficulty] = useState('');
     React.useEffect(() => {
-        const { gameData, gameCount } = state;
+        const { gameData, gameCount, gameType, gameDifficulty } = state;
         setQuesArray(gameData)
         setTotalQuiz(gameCount)
+        setGameDifficulty(gameDifficulty)
+        setGameType(gameType)
     }, [])
 
     const prevQuestion = () => {
@@ -51,7 +55,7 @@ export default function PlayGame() {
        </div> 
 
        <h2>Question Number : {questionCounter}</h2>
-
+       <h3>Difficulty Level: {gameDifficulty}</h3>
        <Card 
        questionArray={questionArray} 
        questionCounter={questionCounter}

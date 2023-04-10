@@ -10,7 +10,7 @@ export default function Game() {
   const [gameCount, setGameCount] = React.useState('');
   const [gameType, setGameType] = React.useState('');
   const [gameDifficulty, setGameDifficulty] = React.useState('');
-  const [gameArray, setGameArray] = React.useState([]);
+  
 
   const handleChange = (event) => {
     setGameType(event.target.value);
@@ -21,7 +21,7 @@ export default function Game() {
 
   const getQuiz = () => {
       axios.get(
-        `https://opentdb.com/api.php?&amount=${gameCount}&difficulty=${gameDifficulty}&category=${gameType}`)
+        `https://opentdb.com/api.php?&amount=${gameCount}&difficulty=${gameDifficulty}&category=${gameType}&encode=base64`)
       
         .then((response) => {
             
@@ -29,7 +29,10 @@ export default function Game() {
             {
                 state: { 
                     gameData : response.data.results,
-                    gameCount : gameCount
+                    gameCount : gameCount,
+                    gameType : gameType,
+                    gameDifficulty : gameDifficulty
+
                 }
             })
         })
