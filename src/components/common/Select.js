@@ -5,15 +5,16 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function BasicSelect() {
-  const [gameType, setGameType] = React.useState('');
+export default function BasicSelect({
 
-  const handleChange = (event) => {
-    setGameType(event.target.value);
-  };
+   
+    gameType,
+    handleChange
 
+}) {
+  
   return (
-    <Box sx={{ minWidth: 220 }}>
+    <Box sx={{ minWidth: 220 }} style={{marginTop: 20}}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Game Category</InputLabel>
         <Select
