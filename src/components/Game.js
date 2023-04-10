@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Select from './common/Select';
 
 export default function Game() {
   return (
@@ -6,7 +7,7 @@ export default function Game() {
         <h1>Gamification</h1>
 
         <input placeholder='Question number'/>
-        <input placeholder='Category number'/>
+        <Select/>
         <input placeholder='Level of dificulty'/>
         
     </div>
