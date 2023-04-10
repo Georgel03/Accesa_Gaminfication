@@ -3,7 +3,7 @@ import Game from './components/Game';
 import PlayGame from './components/PlayGame';
 import {
   Route,
-  Routes,
+  Routes
 } from "react-router-dom";
 
 function App() {
@@ -11,9 +11,9 @@ function App() {
     <div className='app-main'>
       <Routes>
         <Route exact path="/" element={<Game />} />
-        <Route exact path='/play' elemnt={<PlayGame />} />
-        </Routes>
-       </div>
+        <Route exact path='/play' element={<PlayGame />} />
+      </Routes>
+     </div>
     
   );
 }

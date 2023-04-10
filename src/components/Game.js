@@ -4,8 +4,9 @@ import Input from './common/Input';
 import GameDifficulty from  './common/DifficultySelect';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom'
 export default function Game() {
+  const navigate = useNavigate()
   const [gameCount, setGameCount] = React.useState('');
   const [gameType, setGameType] = React.useState('');
   const [gameDifficulty, setGameDifficulty] = React.useState('');
@@ -23,7 +24,14 @@ export default function Game() {
         `https://opentdb.com/api.php?&amount=${gameCount}&difficulty=${gameDifficulty}&category=${gameType}`)
       
         .then((response) => {
-            setGameArray(response.data.results)
+            
+            navigate('/play', 
+            {
+                state: { 
+                    gameData : response.data.results,
+                    gameCount : gameCount
+                }
+            })
         })
   }
   return (
