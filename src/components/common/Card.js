@@ -30,7 +30,10 @@ export default function OutlinedCard({
         ].map((options) => {
           return (
 
-            <Grid options={options}/>
+            <Grid 
+            options={options}
+            correctAnswer ={questionArray[questionCounter - 1].correct_answers}
+            />
             
           )
         })}

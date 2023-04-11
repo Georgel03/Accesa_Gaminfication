@@ -21,7 +21,7 @@ export default function Game() {
 
   const getQuiz = () => {
       axios.get(
-        `https://opentdb.com/api.php?&amount=${gameCount}&difficulty=${gameDifficulty}&category=${gameType}&encode=base64`)
+        `https://opentdb.com/api.php?&amount=${gameCount}&difficulty=${gameDifficulty}&category=${gameType}`)
       
         .then((response) => {
             
