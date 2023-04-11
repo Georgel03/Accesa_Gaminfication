@@ -1,7 +1,7 @@
 import './App.css';
 import Game from './components/Game';
 import PlayGame from './components/PlayGame';
-import Results from './components/Results';
+import Result from './components/Result';
 import {
   Route,
   Routes
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Game />} />
         <Route exact path='/play' element={<PlayGame />} />
-        <Route exact path='/results' element={<Results />} />
+        <Route exact path='/result' element={<Result />} />
       </Routes>
      </div>
     
