@@ -24,3 +24,7 @@ h3
   color: black;
   cursor: pointer;
 }
+
+.table-cell{
+  text-transform: capitalize;
+}

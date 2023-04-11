@@ -2,19 +2,34 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import  { useNavigate } from 'react-router-dom'
-import { database } from '../firebase-config';
-import { addDoc, collection } from 'firebase/firestore'
+import { database } from '../../firebase-config';
+import { getDocs, collection } from 'firebase/firestore';
+import  Table  from '../common/Table';
+import Divider from '@mui/material/Divider';
+
 
 
 export default function Result() {
+  const databaseRef = collection(database, 'Leader Board')
   const navigate = useNavigate();
   const { state } = useLocation();
   const [finalResult, setFinalResult] = React.useState(0)
+  const [leaderBoardData, setLeaderBoardData] = React.useState([]);
   React.useEffect(() => {
      const { finalResults } = state;
      setFinalResult(finalResults)
+     getData()
 
   }, [])
+
+  const getData = async () => {
+      const data = await getDocs(databaseRef)
+      setLeaderBoardData(
+        data.docs.map((doc) => ({...doc.data(), id: doc.id}))
+      .sort((a, b) => parseFloat(b.finalScore) - parseFloat(a.finalScore))
+      )
+
+  }
   const retryGame= () => {
         navigate('/')
   }
@@ -28,10 +43,16 @@ export default function Result() {
 
         onClick={retryGame}
         variant="contained" 
-        style={{marginLeft: 10 }}>
+        style={{marginBottom: 30 }}>
         Play Again! 
 
        </Button>
-    </div>
+       <Divider />
+       <h2>Leader Board</h2>
+       <div style={{margin: 20}}>
+       <Table leaderBoardData={leaderBoardData}/>
+       </div>
+
+     </div>
   )
 }

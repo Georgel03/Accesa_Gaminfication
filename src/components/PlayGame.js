@@ -3,7 +3,7 @@ import { useLocation, useNavigate} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import Card from './common/Card';
 import { database } from '../firebase-config';
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection } from 'firebase/firestore';
 
 export default function PlayGame() {
     const { state } = useLocation();
