@@ -18,19 +18,28 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 
-export default function BasicGrid({options, correctAnswer, nextQuestion}) {
+export default function BasicGrid({
+    options, 
+    correctAnswer, 
+    nextQuestion, 
+    setResult,
+    result
+}) {
+    
     const handleOptions = (option) => {
 
       
 
 
         if ( correctAnswer === option ) {
+            setResult(result + 1)
             toast.success("Right Answer!", {
 
                autoClose: 2000 ,  
         })
         }
         else {
+            setResult(result - 1)
             toast.error("Wrong Answer!", {
                 autoClose: 2000 , 
             }
@@ -39,7 +48,7 @@ export default function BasicGrid({options, correctAnswer, nextQuestion}) {
         nextQuestion()
     }
   return (
-    
+    <div>
     <Box sx={{ flexGrow: 1 }}>
         <ToastContainer />
       <Grid container spacing={2}>
@@ -53,7 +62,7 @@ export default function BasicGrid({options, correctAnswer, nextQuestion}) {
       </Grid>
      </Box>
       
-    
+    </div>
            
   );
 }

@@ -9,7 +9,9 @@ export default function OutlinedCard({
 
     questionCounter,
     questionArray,
-    nextQuestion
+    nextQuestion,
+    setResult,
+    result
 
 }) {
   return (
@@ -34,6 +36,8 @@ export default function OutlinedCard({
             <Grid 
             nextQuestion={nextQuestion}
             options={options}
+            setResult={setResult}
+            result={result}
             correctAnswer ={questionArray[questionCounter - 1].correct_answers}
             />
             

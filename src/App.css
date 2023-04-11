@@ -5,6 +5,11 @@
   font-family: 'Luxurious Roman', cursive;
 }
 
+h3
+{
+   text-transform: capitalize;
+}
+
 .quiz-main{
   padding: 20px;
 }

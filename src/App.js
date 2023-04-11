@@ -1,7 +1,8 @@
 import './App.css';
 import Game from './components/Game';
 import PlayGame from './components/PlayGame';
-import Result from './components/Result';
+import Result from './components/common/Result';
+
 import {
   Route,
   Routes

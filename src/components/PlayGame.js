@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import Card from './common/Card';
 export default function PlayGame() {
     const { state } = useLocation();
+    const navigate = useNavigate();
     const [ questionCounter, setQuesCounter ] = useState(1);
     const [totalQuiz, setTotalQuiz] = useState(1);
     const [questionArray, setQuesArray] = useState([]);
     const [gameType, setGameType] = useState('');
     const [gameDifficulty, setGameDifficulty] = useState('');
+    const [result, setResult] = useState(0)
     React.useEffect(() => {
         const { gameData, gameCount, gameType, gameDifficulty } = state;
         setQuesArray(gameData)
@@ -28,12 +30,22 @@ export default function PlayGame() {
             setQuesCounter(questionCounter + 1)
     }
     }
+
+    const submitQuiz = () => {
+        navigate('/result', {
+            state: { 
+                finalResults : result ,
+                
+            }
+        }
+        )
+    }
         
     
   return (
     <div>
        <h1>Play Game</h1>
-
+      
        <div>
        <Button 
  
@@ -60,12 +72,14 @@ export default function PlayGame() {
        questionArray={questionArray} 
        questionCounter={questionCounter}
        nextQuestion={nextQuestion}
+       setResult={setResult}
+       result={result}
        />
 
       {questionCounter === Number(totalQuiz) ? (
         <Button 
 
-        //onClick={nextQuestion}
+        onClick={submitQuiz}
         variant="contained" 
         style={{marginLeft: 10 }}>
         Submit 
