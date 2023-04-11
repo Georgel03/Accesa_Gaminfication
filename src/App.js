@@ -2,11 +2,11 @@ import './App.css';
 import Game from './components/Game';
 import PlayGame from './components/PlayGame';
 import Result from './components/common/Result';
-
 import {
   Route,
   Routes
 } from "react-router-dom";
+import { app } from './firebase-config';
 
 function App() {
   return (

@@ -4,12 +4,15 @@ import Input from './common/Input';
 import GameDifficulty from  './common/DifficultySelect';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+
 export default function Game() {
   const navigate = useNavigate()
   const [gameCount, setGameCount] = React.useState('');
   const [gameType, setGameType] = React.useState('');
   const [gameDifficulty, setGameDifficulty] = React.useState('');
+  const [playerName, setPlayerName] = React.useState('')
   
 
   const handleChange = (event) => {
@@ -18,6 +21,12 @@ export default function Game() {
   const handleDifficulty = (event) => {
     setGameDifficulty(event.target.value);
   };
+
+  const getPlayerName = (value) => {
+    setPlayerName(value)
+    localStorage.setItem('Playername ', value)
+
+  }
 
   const getQuiz = () => {
       axios.get(
@@ -40,6 +49,15 @@ export default function Game() {
   return (
     <div className='app-main'>
         <h1>Gamification</h1>
+        <TextField 
+            style={{marginBottom : 20}}
+            fullWidth 
+            id="outlined-basic" 
+            label="Player Name" 
+            variant="outlined" 
+            onChange={(e) => getPlayerName(e.target.value)}
+            value={playerName}
+      />
         <Input 
         setGameCount={setGameCount}
          gameCount={gameCount}/>

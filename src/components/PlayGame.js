@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { useLocation, useNavigate} from 'react-router-dom'
 import Button from '@mui/material/Button';
 import Card from './common/Card';
+import { database } from '../firebase-config';
+import { addDoc, collection } from 'firebase/firestore'
+
 export default function PlayGame() {
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -10,13 +13,16 @@ export default function PlayGame() {
     const [questionArray, setQuesArray] = useState([]);
     const [gameType, setGameType] = useState('');
     const [gameDifficulty, setGameDifficulty] = useState('');
-    const [result, setResult] = useState(0)
+    const [result, setResult] = useState(0);
+    const [playerName, setPlayerName] = useState('');
+    const databaseRef = collection('Leader Board', database)
     React.useEffect(() => {
         const { gameData, gameCount, gameType, gameDifficulty } = state;
         setQuesArray(gameData)
         setTotalQuiz(gameCount)
         setGameDifficulty(gameDifficulty)
         setGameType(gameType)
+        setPlayerName(localStorage.getItem('Playername'))
     }, [])
 
     const prevQuestion = () => {
@@ -32,13 +38,21 @@ export default function PlayGame() {
     }
 
     const submitQuiz = () => {
-        navigate('/result', {
-            state: { 
-                finalResults : result ,
-                
+        addDoc(databaseRef, {
+            playerName : playerName,
+            difficulty : gameDifficulty,
+            category : questionArray[0].category
+        })
+        .then(() => {
+            navigate('/result', {
+                state: { 
+                    finalResults : result ,
+                    
+                }
             }
-        }
-        )
+            )
+        })
+       
     }
         
     
