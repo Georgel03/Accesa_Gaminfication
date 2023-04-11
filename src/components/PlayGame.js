@@ -59,7 +59,24 @@ export default function PlayGame() {
        <Card 
        questionArray={questionArray} 
        questionCounter={questionCounter}
+       nextQuestion={nextQuestion}
        />
+
+      {questionCounter === Number(totalQuiz) ? (
+        <Button 
+
+        //onClick={nextQuestion}
+        variant="contained" 
+        style={{marginLeft: 10 }}>
+        Submit 
+        </Button>
+
+      ) : (
+        ""
+
+      )}
+      
+   
     </div>
   )
 }

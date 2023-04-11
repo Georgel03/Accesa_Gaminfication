@@ -8,7 +8,8 @@ import Grid  from './Grid';
 export default function OutlinedCard({
 
     questionCounter,
-    questionArray
+    questionArray,
+    nextQuestion
 
 }) {
   return (
@@ -31,6 +32,7 @@ export default function OutlinedCard({
           return (
 
             <Grid 
+            nextQuestion={nextQuestion}
             options={options}
             correctAnswer ={questionArray[questionCounter - 1].correct_answers}
             />
