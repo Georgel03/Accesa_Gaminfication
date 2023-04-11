@@ -16,8 +16,12 @@ export default function Result() {
   const [finalResult, setFinalResult] = React.useState(0)
   const [leaderBoardData, setLeaderBoardData] = React.useState([]);
   React.useEffect(() => {
-     const { finalResults } = state;
-     setFinalResult(finalResults)
+
+     if(state)   {
+        const { finalResults } = state;
+        setFinalResult(finalResults);
+     } 
+    
      getData()
 
   }, [])
@@ -36,8 +40,12 @@ export default function Result() {
   return (
     <div>
        <h1>Results</h1>
-
-       <h2>Final score is : {finalResult} </h2> 
+       {finalResult ? (
+          <h2>Final score is : {finalResult} </h2> 
+       ) : (
+         ""
+       )}
+       
 
        <Button 
 

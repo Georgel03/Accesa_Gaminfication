@@ -74,8 +74,16 @@ export default function Game() {
 
         onClick={getQuiz}
         variant="contained" 
-        style={{marginTop: 10}}>
+        style={{marginTop: 10, marginRight: 5}}>
             Get Quiz
+        </Button>
+
+        <Button 
+
+        onClick={() => navigate('/result')}
+        variant="contained" 
+        style={{marginTop: 10, marginLeft: 5}}>
+            VIEW LEADER BOARD
         </Button>
         
     </div>
