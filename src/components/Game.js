@@ -12,7 +12,7 @@ export default function Game() {
   const [gameCount, setGameCount] = React.useState('');
   const [gameType, setGameType] = React.useState('');
   const [gameDifficulty, setGameDifficulty] = React.useState('');
-  const [playerName, setPlayerName] = React.useState('')
+  const [playerName, setPlayerName] = React.useState('');
   
 
   const handleChange = (event) => {
@@ -24,7 +24,7 @@ export default function Game() {
 
   const getPlayerName = (value) => {
     setPlayerName(value)
-    localStorage.setItem('Playername ', value)
+    localStorage.setItem('Playername', value)
 
   }
 

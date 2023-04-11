@@ -2,6 +2,8 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import  { useNavigate } from 'react-router-dom'
+import { database } from '../firebase-config';
+import { addDoc, collection } from 'firebase/firestore'
 
 
 export default function Result() {

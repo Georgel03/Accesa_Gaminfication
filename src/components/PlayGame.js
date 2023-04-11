@@ -15,7 +15,7 @@ export default function PlayGame() {
     const [gameDifficulty, setGameDifficulty] = useState('');
     const [result, setResult] = useState(0);
     const [playerName, setPlayerName] = useState('');
-    const databaseRef = collection('Leader Board', database)
+    const databaseRef = collection(database, 'Leader Board')
     React.useEffect(() => {
         const { gameData, gameCount, gameType, gameDifficulty } = state;
         setQuesArray(gameData)
@@ -39,9 +39,11 @@ export default function PlayGame() {
 
     const submitQuiz = () => {
         addDoc(databaseRef, {
+
             playerName : playerName,
             difficulty : gameDifficulty,
-            category : questionArray[0].category
+            category : questionArray[0].category,
+            finalScore: result
         })
         .then(() => {
             navigate('/result', {
@@ -49,10 +51,8 @@ export default function PlayGame() {
                     finalResults : result ,
                     
                 }
-            }
-            )
-        })
-       
+            })
+        }) 
     }
         
     
