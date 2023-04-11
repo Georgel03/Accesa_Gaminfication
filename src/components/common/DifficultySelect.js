@@ -7,8 +7,7 @@ import Select from '@mui/material/Select';
 
 export default function BasicSelect({
 
-   
-    gameType,
+    gameDifficulty,
     handleChange
 
 }) {
@@ -20,7 +19,7 @@ export default function BasicSelect({
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={gameType}
+          value={gameDifficulty}
           label="Game Difficulty"
           onChange={handleChange}
         >

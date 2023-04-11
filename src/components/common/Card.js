@@ -14,13 +14,19 @@ export default function OutlinedCard({
     result
 
 }) {
+  const removeUnicode = (str) => {
+    let original_string  = str;
+    let clean_string = original_string.replace(/&[a-zA-Z]+;/g, '').replace(/&#039;/g, "'");
+    return clean_string;
+  }
+
   return (
     <Box sx={{ minWidth: 275 }} style={{margin: 20}}>
       {questionArray.length > 0 ? (
         <Card variant="outlined">
         <CardContent>
         <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
-         Question : {questionArray[questionCounter - 1].question}
+         Question : {removeUnicode(questionArray[questionCounter - 1].question)}
         </Typography>
         
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -31,7 +37,6 @@ export default function OutlinedCard({
           ...questionArray[questionCounter - 1].incorrect_answers,
            questionArray[questionCounter - 1].correct_answer
         ].map((options) => {
-          console.log(questionArray);
           return (
 
           
