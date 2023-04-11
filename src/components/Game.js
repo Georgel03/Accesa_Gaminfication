@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Game() {
   const navigate = useNavigate()
@@ -23,31 +25,40 @@ export default function Game() {
   };
 
   const getPlayerName = (value) => {
-    setPlayerName(value)
-    localStorage.setItem('Playername', value)
-
+   
+        setPlayerName(value)
+        localStorage.setItem('Playername', value)
+   
   }
 
   const getQuiz = () => {
-      axios.get(
-        `https://opentdb.com/api.php?&amount=${gameCount}&difficulty=${gameDifficulty}&category=${gameType}`)
-      
-        .then((response) => {
-            
-            navigate('/play', 
-            {
-                state: { 
-                    gameData : response.data.results,
-                    gameCount : gameCount,
-                    gameType : gameType,
-                    gameDifficulty : gameDifficulty
-
-                }
+    if(playerName) {
+        axios.get(
+            `https://opentdb.com/api.php?&amount=${gameCount}&difficulty=${gameDifficulty}&category=${gameType}`)
+          
+            .then((response) => {
+                
+                navigate('/play', 
+                {
+                    state: { 
+                        gameData : response.data.results,
+                        gameCount : gameCount,
+                        gameType : gameType,
+                        gameDifficulty : gameDifficulty
+    
+                    }
+                })
             })
-        })
+
+    }
+    else {
+        toast.error(`Please Enter Player's Name!`)
+    }
+      
   }
   return (
     <div className='app-main'>
+        <ToastContainer />
         <h1>Gamification</h1>
         <TextField 
             style={{marginBottom : 20}}
