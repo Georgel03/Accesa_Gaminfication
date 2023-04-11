@@ -16,7 +16,7 @@ export default function BasicSelect({
   return (
     <Box sx={{ minWidth: 220 }} style={{marginTop: 20}}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Game Category</InputLabel>
+        <InputLabel id="demo-simple-select-label">Select Difficulty</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"

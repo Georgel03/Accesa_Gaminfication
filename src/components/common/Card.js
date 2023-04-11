@@ -29,16 +29,18 @@ export default function OutlinedCard({
 
         {[
           ...questionArray[questionCounter - 1].incorrect_answers,
-           questionArray[questionCounter - 1].correct_answers
+           questionArray[questionCounter - 1].correct_answer
         ].map((options) => {
+          console.log(questionArray);
           return (
 
+          
             <Grid 
             nextQuestion={nextQuestion}
             options={options}
             setResult={setResult}
             result={result}
-            correctAnswer ={questionArray[questionCounter - 1].correct_answers}
+            correctAnswer ={questionArray[questionCounter - 1].correct_answer}
             />
             
           )

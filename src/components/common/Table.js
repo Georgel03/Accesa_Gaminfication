@@ -32,7 +32,7 @@ export default function BasicTable({ leaderBoardData }) {
                   <TableCell component="th" scope="row">
                     {person.playerName}
                   </TableCell>
-                  <TableCell classname="table-cell">{person.difficulty}</TableCell>
+                  <TableCell className="table-cell">{person.difficulty}</TableCell>
                   <TableCell>{person.category}</TableCell>
                   <TableCell >{person.finalScore}</TableCell>
                 </TableRow>
